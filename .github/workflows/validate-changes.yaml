@@ -1,0 +1,44 @@
+name: validate changes made by an authorized user
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  restrict-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Read authorized user
+        id: read_authorized_user
+        uses: jaywcjlove/github-action-read-file@main
+        with:
+          path: 'model-metadata/authorized_users.txt'
+
+      - name: Get changed files
+        id: get_changed_files
+        uses: tj-actions/changed-files@v45
+        with:
+          dir_names: 'True'
+
+      - name: Check if changes made by auth user
+        run: |
+          readarray -t lines_arr <<< "${{ steps.read_authorized_user.outputs.content }}"
+          
+          for line in "${lines_arr[@]}"; do
+            dir=$(echo "$line" | awk '{print $1}')
+            user=$(echo "$line" | awk '{print $2}')
+            
+            for file in ${{ steps.get_changed_files.outputs.all_modified_files }}; do
+              if [[ "$file" == "$dir" ]]; then
+                if [[ "${{ github.actor }}" != "$user" ]]; then
+                  echo "Error: Only '$user' is allowed to change files in '$dir/'"
+                  exit 1
+                fi
+              fi
+            done
+          done 
