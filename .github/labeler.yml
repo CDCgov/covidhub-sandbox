@@ -2,7 +2,7 @@ data-submission:
   - all: ['model-output/**/*.csv']
  
 code:
-  - code/**/*
+  - src/**/*
 
 model-metadata:
   - all: ['model-metadata/**/*.yml', 'model-metadata/**/*.yaml']
