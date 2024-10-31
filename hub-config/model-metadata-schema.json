@@ -78,6 +78,10 @@
             "description": "Team-specified indicator for whether the model should be eligible for inclusion in a Hub ensemble and public visualization. A team may designate up to two models.",
             "type": "boolean"
         },
+        "designated_github_user": {
+            "description": "A team member who would be responsible for submitting forecasts as a pull request to the CovidHub repository. Only the pull request from this designated user can get merged automatically after validation.",
+            "type": "string"
+        },
         "citation": {
             "description": "One or more citations for this model",
             "type": "string",
