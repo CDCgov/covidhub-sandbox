@@ -9,6 +9,6 @@ code:
 model-metadata:
   - all: ['model-metadata/**/*.yml', 'model-metadata/**/*.yaml']
 
--documentation:
+documentation:
   - changed-files:
     - any-glob-to-any-file: '**/*.md'
