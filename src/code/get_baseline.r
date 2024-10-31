@@ -17,7 +17,7 @@ curr_or_next_date_with_ltwday <- function(date, ltwday) {
 #' @return vector of state abbreviations
 location_to_abbr <- function(location) {
   dictionary <-
-    epipredict::state_census |>
+    state_census |>
     dplyr::mutate(fips = sprintf("%02d", fips)) |>
     dplyr::transmute(
       location = dplyr::case_match(fips, "00" ~ "US", .default = fips),
