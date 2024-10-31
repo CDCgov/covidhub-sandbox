@@ -2,7 +2,9 @@ data-submission:
   - all: ['model-output/**/*.csv']
  
 code:
-  - src/**/*
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/**/*'
 
 model-metadata:
   - all: ['model-metadata/**/*.yml', 'model-metadata/**/*.yaml']
