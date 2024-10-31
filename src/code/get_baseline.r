@@ -12,20 +12,6 @@ curr_or_next_date_with_ltwday <- function(date, ltwday) {
   date + (ltwday - as.POSIXlt(date)$wday) %% 7L
 }
 
-#' Convert location code to abbreviation using state census data
-#' @param location vector of FIPS codes
-#' @return vector of state abbreviations
-location_to_abbr <- function(location) {
-  dictionary <-
-    state_census |>
-    dplyr::mutate(fips = sprintf("%02d", fips)) |>
-    dplyr::transmute(
-      location = dplyr::case_match(fips, "00" ~ "US", .default = fips),
-      abbr
-    )
-  dictionary$abbr[match(location, dictionary$location)]
-}
-
 # Prepare data, use tentative file-name/location, might need to be changed
 target_tbl <- readr::read_csv(
   "target-data/covid-hospital-admissions.csv",
@@ -37,9 +23,11 @@ target_tbl <- readr::read_csv(
   )
 )
 
+loc_df <- read.csv("target-data/locations.csv")
+
 target_epi_df <- target_tbl |>
   dplyr::transmute(
-    geo_value = location_to_abbr(location),
+    geo_value = loc_df$abbreviation[match(location_name, loc_df$location_name)],
     time_value = .data$date,
     weekly_count = .data$value
   ) |>
@@ -126,9 +114,9 @@ withr::with_rng_version("4.0.0", withr::with_seed(rng_seed, {
             values = purrr::map(
               weekly_count,
               rep,
-              length(cdc_baseline_args_list()$quantile_levels)
+              length(epipredict::cdc_baseline_args_list()$quantile_levels)
             ),
-            quantile_levels = cdc_baseline_args_list()$quantile_levels
+            quantile_levels = epipredict::cdc_baseline_args_list()$quantile_levels # nolint
           )
         )
     )
