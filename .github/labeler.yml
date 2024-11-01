@@ -1,5 +1,7 @@
 data-submission:
-  - all: ['model-output/**/*.csv']
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'model-output/**/*.csv'
  
 code:
   - changed-files:
@@ -7,8 +9,16 @@ code:
       - 'src/**/*'
 
 model-metadata:
-  - all: ['model-metadata/**/*.yml', 'model-metadata/**/*.yaml']
+  - changed-files:
+    - any-glob-to-any-file:
+      - model-metadata/**/*.yml
+      - model-metadata/**/*.yaml
 
 documentation:
   - changed-files:
     - any-glob-to-any-file: '**/*.md'
+
+configuration:
+  - changed-files:
+    - any-glob-to-any-file:
+      - hub-config/*
