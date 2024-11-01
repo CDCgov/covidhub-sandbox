@@ -10,7 +10,7 @@ model_contributors: [
     "email": "jdoe@example.com"
   },
 
-  {git
+  {
     "name": "Alice Bob",
     "affiliation": "Example LLC",
     "email": "alicebob@example.com"
