@@ -24,6 +24,7 @@ jobs:
         id: get_changed_files
         uses: tj-actions/changed-files@v45
         with:
+          path: 'model-output'
           dir_names: 'True'
 
       - name: Check if changes made by auth user
