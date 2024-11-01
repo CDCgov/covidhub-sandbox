@@ -17,7 +17,7 @@ jobs:
         id: read_authorized_user
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: 'model-metadata/authorized_users.txt'
+          path: 'src/code/authorized_users.txt'
 
       - name: Get changed files
         id: get_changed_files
