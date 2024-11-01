@@ -17,6 +17,7 @@ jobs:
         id: read_authorized_user
         uses: jaywcjlove/github-action-read-file@main
         with:
+          branch: main
           path: 'src/code/authorized_users.txt'
 
       - name: Get changed files
