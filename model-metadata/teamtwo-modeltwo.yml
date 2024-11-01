@@ -1,0 +1,27 @@
+team_name: "Test Team Number Two"
+team_abbr: "teamtwo"
+model_name: "long-and-verbose-model-name-for-test-model-two"
+model_abbr: "modeltwo"
+model_version: "0.1"
+model_contributors: [
+  {
+    "name": "Jane Doe",
+    "affiliation": "University of Example",
+    "email": "jdoe@example.com"
+  },
+
+  {
+    "name": "Alice Bob",
+    "affiliation": "Example LLC",
+    "email": "alicebob@example.com"
+  }
+]
+
+license: "CC-BY-4.0"
+designated_model: true
+designated_github_user: "janedoe"
+methods: "Example model to test submission"
+data_inputs: "Daily incident covid hospitalizations"
+methods_long: "This is a long description of the model methods that goes on for several lines. This is a long description of the model methods that goes on for several lines."
+ensemble_of_models: false
+ensemble_of_hub_models: false
