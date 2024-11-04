@@ -64,12 +64,10 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Approve Pull Request
-      if: steps.create_pr.outputs.pull_request_url != ''
       run: |
         gh pr review --approve "${{ steps.create_pr.outputs.pull_request_url }}"
         
     - name: Enable auto-merge for approved PRs
-      if: steps.create_pr.outputs.pull_request_url != ''
       run: |
           gh pr merge --auto --squash "${{ steps.create_pr.outputs.pull_request_url }}"
   
