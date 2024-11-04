@@ -50,7 +50,7 @@ jobs:
   validate-user-and-merge:
     runs-on: ubuntu-latest
     needs: validate-submission
-    if: contains(github.event.pull_request.labels.*.name, 'data-submission')  && !contains(github.event.pull_request.labels.*.name, 'metadata')
+    if: contains(github.event.pull_request.labels.*.name, 'data-submission')  && !contains(github.event.pull_request.labels.*.name, 'model-metadata')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
