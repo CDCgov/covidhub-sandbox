@@ -1,6 +1,7 @@
-name: "Pull Request Labeler"
+name: Pull Request Labeler
 on:
-- pull_request_target
+  pull_request_target:
+    types: [opened, synchronize]
 
 jobs:
   labeler:
@@ -8,7 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/labeler@v5
+      - name: Apply labels
+        id: label-pr
+        uses: actions/labeler@v5
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           configuration-path: '.github/labeler.yml'
+          sync-labels: true
