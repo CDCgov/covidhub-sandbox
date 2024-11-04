@@ -5,10 +5,12 @@ on:
     branches: main
     paths:
       - 'model-output/**'
+    types: [labeled, synchronize]
 
 jobs:
   validate-changes:
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'data-submission')  && !contains(github.event.pull_request.labels.*.name, 'metadata')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
