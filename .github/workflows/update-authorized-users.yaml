@@ -3,12 +3,15 @@ name: Update authorized users
 on:
   workflow_dispatch:
   pull_request:
+    types:
+      - closed
     branches: main
     paths:
       - 'model-metadata/*'
 
 jobs:
   update-users-list:
+    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -53,14 +56,12 @@ jobs:
       run: |
         git push origin update-authorized-users
   
-    - name: Create Pull Request
+    - name: Create pull request
       id: create_pr
-      uses: peter-evans/create-pull-request@v7
-      with:
-        title: "Update authorized users"
-        body: "This PR updates the authorized users list based on the latest metadata."
-        base: main
-        head: update-authorized-users
+      run: |
+        gh pr create --base main --head update-authorized-users --title "Update authorized users" --body "This PR updates the authorized users list based on the latest metadata."
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Approve Pull Request
       if: steps.create_pr.outputs.pull_request_url != ''
