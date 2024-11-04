@@ -2,11 +2,6 @@ data-submission:
   - changed-files:
     - any-glob-to-any-file:
       - 'model-output/**/*.csv'
- 
-code:
-  - changed-files:
-    - any-glob-to-any-file:
-      - 'src/**/*'
 
 model-metadata:
   - changed-files:
