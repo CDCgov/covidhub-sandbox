@@ -8,6 +8,8 @@ on:
       - 'model-output/**'
       - 'model-metadata/*'
       - '!**README**'
+    types:
+      - labeled
 
 jobs:
   validate-submission:
