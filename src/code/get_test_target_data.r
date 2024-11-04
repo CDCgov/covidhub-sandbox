@@ -9,7 +9,7 @@ loc_df <- filter(df, location < 60)
 set.seed(123)
 
 # Generate synthetic data
-unique_dates <- seq(as.Date("2024-01-06"), as.Date("2024-10-30"), by = "week")
+unique_dates <- seq(as.Date("2024-01-06"), as.Date("2024-11-06"), by = "week")
 
 # Create a unique combination of date and location
 fake_data <- expand.grid(
@@ -24,5 +24,5 @@ fake_data <- expand.grid(
 
 # Display the generated data
 write.csv(
-  fake_data, file.path("target-data", "test-hospital-admissions.csv")
+  fake_data, file.path("target-data", "covid-hospital-admissions.csv")
 )
