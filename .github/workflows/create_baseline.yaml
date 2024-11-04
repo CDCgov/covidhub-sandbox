@@ -45,15 +45,3 @@ jobs:
         gh pr create --base main --head add-baseline --title "Add baseline forecast" --body "This PR is generated automatically."
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Approve Pull Request
-      run: |
-        gh pr review --approve "${{ steps.create_pr.outputs.pull_request_url }}"
-      env:
-        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        
-    - name: Enable auto-merge for approved PRs
-      run: |
-        gh pr merge --auto --squash "${{ steps.create_pr.outputs.pull_request_url }}"
-      env:
-        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}

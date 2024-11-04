@@ -62,15 +62,3 @@ jobs:
         gh pr create --base main --head update-authorized-users --title "Update authorized users" --body "This PR updates the authorized users list based on the latest metadata."
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Approve Pull Request
-      run: |
-        gh pr review --approve "${{ steps.create_pr.outputs.pull_request_url }}"
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Enable auto-merge for approved PRs
-      run: |
-        gh pr merge --auto --squash "${{ steps.create_pr.outputs.pull_request_url }}"
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
