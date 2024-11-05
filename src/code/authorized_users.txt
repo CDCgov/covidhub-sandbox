@@ -3,3 +3,4 @@ teamfour-testmodel sbidari
 teamone-modelone sbidari
 teamthree-testmodel sbidari
 teamtwo-modeltwo janedoe
+teamsix-modelsix sbidari
