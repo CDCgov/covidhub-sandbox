@@ -9,10 +9,13 @@ on:
 jobs:
   validate-user-and-merge:
     runs-on: ubuntu-latest
-    if:  ${{ contains(github.event.pull_request.labels.*.name, 'data-submission')  && !contains(github.event.pull_request.labels.*.name, 'model-metadata') }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: dump github context
+        run: echo "${{ toJson(github)}}"
 
       - name: Read authorized user
         id: read_authorized_user
