@@ -102,10 +102,10 @@ jobs:
             done
           done
         env:
-          GITHUB_TOKEN: ${{secrets.GH_PAT_TOKEN}}
+          GITHUB_PAT: ${{secrets.GH_PAT_TOKEN}}
 
       - name: Enable auto-merge for approved PRs
         if: steps.get_changed_metadata_files.outputs.any_changed != 'true'
         run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
-          GITHUB_TOKEN: ${{secrets.GH_PAT_TOKEN}}
+          GITHUB_PAT: ${{secrets.GH_PAT_TOKEN}}
