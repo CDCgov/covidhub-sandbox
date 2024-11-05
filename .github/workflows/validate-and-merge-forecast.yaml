@@ -99,6 +99,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Enable auto-merge for approved PRs
+        if: steps.get_changed_metadata_files.outputs.any_changed != 'true'
         run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
