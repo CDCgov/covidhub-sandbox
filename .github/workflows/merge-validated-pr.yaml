@@ -19,8 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          persist-credentials: false
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
         
       - name: Read authorized user
         id: read_authorized_user
