@@ -54,10 +54,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: dump github context
-        run: echo "${{ toJson(github)}}"
-
+        
       - name: Read authorized user
         id: read_authorized_user
         uses: jaywcjlove/github-action-read-file@main
