@@ -84,7 +84,7 @@
             "items": {
                 "type": "string"
             }
-        }
+        },
         "citation": {
             "description": "One or more citations for this model",
             "type": "string",
