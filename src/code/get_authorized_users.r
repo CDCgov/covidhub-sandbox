@@ -12,28 +12,29 @@ extract_metadata <- function(file) {
   model_abbr <- ifelse(
     "model_abbr" %in% names(yml_data), yml_data$model_abbr, NA
   )
-  designated_user <- ifelse(
-    "designated_github_user" %in% names(yml_data),
-    yml_data$designated_github_user, NA
-  )
+  designated_user <- if ("designated_github_user" %in% names(yml_data)) {
+    if (is.vector(yml_data$designated_github_user)) {
+      paste(yml_data$designated_github_user, collapse = ", ")
+    } else {
+      yml_data$designated_github_user
+    }
+  } else {
+    NA
+  }
 
-  return(c(team_abbr, model_abbr, designated_user))
+  return(list(
+    team_abbr = team_abbr,
+    model_abbr = model_abbr,
+    designated_github_user = designated_user
+  ))
 }
 
 metadata_list <- purrr::map(yml_files, extract_metadata)
-metadata_df <- do.call(rbind, metadata_list)
-colnames(metadata_df) <- c("team_name", "model_name", "designated_users")
+data_df <- do.call(rbind, lapply(metadata_list, as.data.frame))
+colnames(data_df) <- c("team_name", "model_name", "designated_users")
 
-team_model <- paste(
-  metadata_df[, "team_name"],
-  metadata_df[, "model_name"],
-  sep = "-"
+output <- glue::glue(
+  "{data_df$team_name}-{data_df$model_name} {data_df$designated_users}"
 )
 
-out <- paste(
-  team_model,
-  metadata_df[, "designated_users"],
-  sep = " "
-)
-
-writeLines(out, file.path(output_path, "authorized_users.txt"))
+writeLines(output, file.path(output_path, "authorized_users.txt"))

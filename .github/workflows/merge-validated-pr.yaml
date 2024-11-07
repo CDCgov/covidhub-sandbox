@@ -6,8 +6,6 @@ on:
     branches: main
     paths:
       - 'model-output/**'
-      - 'model-metadata/*'
-      - '!**README**'
       
 jobs:
   validate-user-and-merge:
@@ -47,20 +45,31 @@ jobs:
           readarray -t lines_arr <<< "${{ steps.read_authorized_user.outputs.content }}"
           
           for line in "${lines_arr[@]}"; do
-            dir=$(echo "$line" | awk '{print $1}')
-            user=$(echo "$line" | awk '{print $2}')
+            read -r dir user_list <<< $line
+            IFS=', ' read -r -a user_array <<< "$user_list"  
             
             for file in ${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}; do
               if [[ "$file" == "$dir" ]]; then
-                if [[ "${{ github.actor }}" == "$user" ]]; then
+                is_authorized=false
+
+                for user in "${user_array[@]}"; do
+                  if [[ "${{ github.actor }}" == "$user" ]]; then
+                    is_authorized=true
+                    break
+                  fi
+                done
+
+                if [[ "$is_authorized" == true ]]; then
                   gh pr review --approve "${{ github.event.pull_request.html_url }}"
                   exit 0
                 else
-                  echo "Error: Only '$user' is allowed to change files in '$dir/'"
+                  echo "Error: Only following users are allowed to change files in '$dir/': ${user_array[*]}"
                   exit 1
                 fi
+
               fi
             done
+            
           done
         env:
           GH_TOKEN: ${{secrets.GH_PAT_TOKEN}}
