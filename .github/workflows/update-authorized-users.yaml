@@ -2,13 +2,9 @@ name: Update authorized users
 
 on:
   workflow_dispatch:
-  pull_request:
-    types:
-      - closed
-    branches: main
-    paths:
-      - 'model-metadata/*'
-
+  schedule:
+    - cron: '30 11 * * 3'
+    
 jobs:
   update-users-list:
     if: github.event.pull_request.merged
