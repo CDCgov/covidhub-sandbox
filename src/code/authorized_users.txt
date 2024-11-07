@@ -1,6 +1,6 @@
 teamfive-model5 sbidari
 teamfour-testmodel sbidari
 teamone-modelone sbidari
+teamsix-modelsix sbidari
 teamthree-testmodel sbidari
 teamtwo-modeltwo janedoe
-teamsix-modelsix sbidari
