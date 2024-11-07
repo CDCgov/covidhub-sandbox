@@ -1,5 +1,5 @@
 team_name: "Test Team For Automerging"
-team_abbr: "automergeteam"
+team_abbr: "autoteam"
 model_name: "A long and verbose model name for this test team"
 model_abbr: "testautomodel"
 model_version: "0.1"
