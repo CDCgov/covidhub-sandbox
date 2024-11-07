@@ -19,7 +19,8 @@ model_contributors: [
 
 license: "CC-BY-4.0"
 designated_model: true
-designated_github_user: ["dylanhmorris"]
+designated_github_user: 
+   - "dylanhmorris"
 methods: "Example model to test submission"
 data_inputs: "Daily incident covid hospitalizations"
 methods_long: "This is a long description of the model methods that goes on for several lines. This is a long description of the model methods that goes on for several lines."
