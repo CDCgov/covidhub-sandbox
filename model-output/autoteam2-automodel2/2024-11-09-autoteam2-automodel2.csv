@@ -1,4 +1,4 @@
-origin_date,horizon,location,output_type,output_type_id,value
+reference_date,horizon,location,output_type,output_type_id,value
 2024-11-09,1,MA,sample,s0,24.597850474906842
 2024-11-09,1,MA,sample,s1,34.035209877785626
 2024-11-09,1,MA,sample,s2,10.274843521786599
