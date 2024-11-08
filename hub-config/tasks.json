@@ -134,12 +134,12 @@
                         "sample": {
                             "output_type_id_params": {
                                 "is_required": false,
-                                "type": "integer",
+                                "type": "character",
                                 "min_samples_per_task": 100,
                                 "max_samples_per_task": 100
                             },
                             "value": {
-                                "type": "integer",
+                                "type": "double",
                                 "minimum": 0
                             }
                         }
