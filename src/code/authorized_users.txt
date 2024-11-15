@@ -1,6 +1,6 @@
 autoteam-testautomodel dylanhmorris
 autoteam2-automodel2 damonbayer, sbidari
-teamfive-model5 sbidari
+teamfive-model5 dylanhmorris
 teamfour-testmodel sbidari
 teamone-modelone githubbot, sbidari
 teamsix-modelsix sbidari
