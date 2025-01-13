@@ -8,12 +8,6 @@ model_contributors: [
     "name": "Jane Doe",
     "affiliation": "University of Example",
     "email": "jdoe@example.com"
-  },
-
-  {
-    "name": "Alice Bob",
-    "affiliation": "Example LLC",
-    "email": "alicebob@example.com"
   }
 ]
 
