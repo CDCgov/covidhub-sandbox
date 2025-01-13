@@ -18,7 +18,7 @@ model_contributors: [
 ]
 
 license: "CC-BY-4.0"
-designated_model: true
+designated_model: false
 designated_github_user: "sbidari"
 methods: "Example model to test submission"
 data_inputs: "Daily incident covid hospitalizations"
